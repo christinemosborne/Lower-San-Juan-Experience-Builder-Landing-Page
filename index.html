@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lower San Juan Watershed Plan — Home</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sand:       #F5EDE0;
+    --sand-mid:   #EDE0CE;
+    --sand-border:#D4BFA0;
+    --card-bg:    #FDF8F2;
+    --brown-hdr:  #7A4A22;
+    --brown-side: #8C5C30;
+    --brown-hero: #B87840;
+    --orange:     #E8903A;
+    --orange-lt:  #F4C080;
+    --text-dark:  #3A2010;
+    --text-mid:   #7A5A38;
+    --text-muted: #9A7050;
+    --sage-dark:  #3D6654;
+    --sage-btn:   #5AAA84;
+    --nav-hover:  rgba(255,255,255,0.08);
+  }
+
+  html, body { height: 100%; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--sand);
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── Header ── */
+  .hdr {
+    background: var(--brown-hdr);
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 54px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo-row { display: flex; align-items: center; gap: 11px; }
+  .logo-dot {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--orange);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .logo-dot svg { display: block; }
+  .logo-txt .d { font-size: 9px; color: #D4A878; letter-spacing: 0.06em; text-transform: uppercase; }
+  .logo-txt .t { font-size: 12px; font-weight: 500; color: #FDF4EC; }
+  .hdr-right { display: flex; align-items: center; gap: 18px; }
+  .plan-badge {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.05em;
+    padding: 4px 11px; border-radius: 20px;
+    background: rgba(232,144,58,0.25); color: var(--orange-lt);
+    border: 0.5px solid rgba(232,144,58,0.35);
+  }
+  .hdr-help {
+    font-size: 11px; color: #C4946A;
+    display: flex; align-items: center; gap: 5px;
+    cursor: pointer; text-decoration: none;
+    transition: color 0.15s;
+  }
+  .hdr-help:hover { color: var(--orange-lt); }
+
+  /* ── Body layout ── */
+  .body-layout {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    flex: 1;
+    min-height: 0;
+  }
+
+  /* ── Sidebar ── */
+  .sidebar {
+    background: var(--brown-side);
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 54px);
+  }
+  .sidebar-head {
+    padding: 0 18px 16px;
+    border-bottom: 0.5px solid rgba(255,255,255,0.1);
+    margin-bottom: 10px;
+  }
+  .sidebar-head .sh-label { font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: #C49A6A; margin-bottom: 5px; }
+  .sidebar-head .sh-title { font-size: 13px; font-weight: 500; color: #FDF0E4; line-height: 1.35; }
+
+  .nav-item {
+    display: flex; align-items: center; gap: 11px;
+    padding: 11px 18px;
+    cursor: pointer;
+    border-left: 3px solid transparent;
+    transition: background 0.15s, border-color 0.15s;
+    text-decoration: none;
+  }
+  .nav-item:hover { background: var(--nav-hover); }
+  .nav-item.active { background: rgba(232,144,58,0.2); border-left-color: var(--orange); }
+  .nav-icon {
+    width: 34px; height: 34px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 17px;
+  }
+  .nav-text .nt { font-size: 12px; font-weight: 500; color: #F0DCC8; }
+  .nav-text .ns { font-size: 10px; color: #C49A6A; margin-top: 1px; }
+  .nav-item.active .nt { color: #FDE8C0; }
+  .nav-item.active .ns { color: #E0B880; }
+
+  .nav-divider { height: 0.5px; background: rgba(255,255,255,0.1); margin: 10px 18px; }
+
+  .nav-item-sm {
+    display: flex; align-items: center; gap: 9px;
+    padding: 9px 18px; cursor: pointer;
+    transition: background 0.15s;
+    text-decoration: none;
+  }
+  .nav-item-sm:hover { background: rgba(255,255,255,0.06); }
+  .nav-item-sm i { font-size: 14px; color: #C49A6A; }
+  .nav-item-sm span { font-size: 11px; color: #C49A6A; }
+  .nav-item-sm:hover i, .nav-item-sm:hover span { color: #F0DCC8; }
+
+  .sidebar-footer {
+    margin-top: auto;
+    padding: 14px 18px;
+    border-top: 0.5px solid rgba(255,255,255,0.08);
+  }
+  .sidebar-footer p { font-size: 10px; color: #A07848; line-height: 1.5; }
+
+  /* ── Main ── */
+  .main { display: flex; flex-direction: column; }
+
+  .hero-band {
+    background: var(--brown-hero);
+    padding: 30px 36px 26px;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  }
+  .hero-left .eyebrow {
+    font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: #F4D0A0; margin-bottom: 8px;
+  }
+  .hero-left h1 { font-size: 24px; font-weight: 500; color: #FDF4EC; line-height: 1.25; margin-bottom: 8px; }
+  .hero-left p { font-size: 13px; color: #E8C898; line-height: 1.7; max-width: 480px; }
+  .hero-right { display: flex; flex-direction: column; gap: 9px; align-items: flex-end; flex-shrink: 0; }
+
+  .btn-primary {
+    font-size: 12px; font-weight: 500; padding: 9px 18px;
+    border-radius: 7px; border: none;
+    background: #FFF8F0; color: #7A4A22;
+    cursor: pointer; display: flex; align-items: center; gap: 6px;
+    transition: opacity 0.15s; white-space: nowrap;
+    text-decoration: none;
+  }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-outline {
+    font-size: 12px; font-weight: 500; padding: 9px 18px;
+    border-radius: 7px; border: 0.5px solid rgba(255,255,255,0.35);
+    background: transparent; color: #FDE8C0;
+    cursor: pointer; display: flex; align-items: center; gap: 6px;
+    transition: background 0.15s; white-space: nowrap;
+    text-decoration: none;
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.1); }
+
+  .breadcrumb {
+    background: var(--sand-mid);
+    padding: 8px 36px;
+    display: flex; align-items: center; gap: 7px;
+    border-bottom: 0.5px solid var(--sand-border);
+  }
+  .bc-item {
+    font-size: 11px; color: #8A6040;
+    display: flex; align-items: center; gap: 5px;
+    cursor: pointer; text-decoration: none;
+    transition: color 0.15s;
+  }
+  .bc-item:hover { color: #5A3818; }
+  .bc-item.current { color: #5A3818; font-weight: 500; }
+  .bc-sep { font-size: 11px; color: #C4A070; }
+
+  .content { padding: 28px 36px; flex: 1; background: var(--sand); }
+
+  .section-intro {
+    display: flex; align-items: flex-start; gap: 16px;
+    background: var(--card-bg);
+    border: 0.5px solid var(--sand-border);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-bottom: 24px;
+  }
+  .si-icon {
+    width: 40px; height: 40px; border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+    background: #FAEADA;
+  }
+  .si-text .sit { font-size: 14px; font-weight: 500; color: #4A2C10; margin-bottom: 4px; }
+  .si-text .sis { font-size: 12px; color: #8A6040; line-height: 1.7; }
+
+  .section-label {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px;
+  }
+  .cards { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; margin-bottom: 22px; }
+
+  .card {
+    background: var(--card-bg);
+    border: 0.5px solid var(--sand-border);
+    border-radius: 10px; padding: 20px 18px 16px;
+    cursor: pointer;
+    transition: transform 0.16s, border-color 0.16s;
+    display: flex; flex-direction: column;
+    text-decoration: none;
+  }
+  .card:hover { transform: translateY(-2px); border-color: #B07840; }
+  .card-icon {
+    width: 38px; height: 38px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 19px; margin-bottom: 12px;
+  }
+  .card-tag { font-size: 9px; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 5px; }
+  .card h3 { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 6px; }
+  .card p { font-size: 11px; color: var(--text-mid); line-height: 1.65; flex: 1; margin-bottom: 12px; }
+  .card-foot { display: flex; align-items: center; justify-content: space-between; }
+  .card-cta { font-size: 11px; font-weight: 500; display: flex; align-items: center; gap: 4px; }
+  .card-pill { font-size: 9px; font-weight: 500; padding: 3px 8px; border-radius: 20px; }
+
+  .feedback-row {
+    background: var(--sage-dark);
+    border-radius: 10px; padding: 20px 24px;
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+  .fb-icon {
+    width: 38px; height: 38px; border-radius: 9px;
+    background: rgba(255,255,255,0.12);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; color: #90C8A8; flex-shrink: 0;
+  }
+  .fb-text { flex: 1; }
+  .fb-text .ft { font-size: 13px; font-weight: 500; color: #D8F0E4; margin-bottom: 3px; }
+  .fb-text .fs { font-size: 11px; color: #7ABAAA; line-height: 1.55; }
+  .btn-sage {
+    font-size: 12px; font-weight: 500; padding: 9px 18px;
+    border-radius: 7px; border: none;
+    background: var(--sage-btn); color: #fff;
+    cursor: pointer; display: flex; align-items: center; gap: 6px;
+    transition: opacity 0.15s; white-space: nowrap;
+    text-decoration: none;
+  }
+  .btn-sage:hover { opacity: 0.85; }
+</style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="hdr">
+    <div class="logo-row">
+      <div class="logo-dot">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <circle cx="8" cy="8" r="5.5" stroke="#fff" stroke-width="1.2" fill="none"/>
+          <path d="M8 2.5 Q10.5 8 8 13.5" stroke="#fff" stroke-width="1" fill="none"/>
+          <path d="M2.5 8 Q8 5.5 13.5 8" stroke="#fff" stroke-width="1" fill="none"/>
+        </svg>
+      </div>
+      <div class="logo-txt">
+        <div class="d">Utah Dept. of Environmental Quality</div>
+        <div class="t">Division of Water Quality</div>
+      </div>
+    </div>
+    <div class="hdr-right">
+      <div class="plan-badge">9-Element Watershed Plan</div>
+      <a class="hdr-help" href="#"><i class="ti ti-help-circle"></i> Help &amp; glossary</a>
+    </div>
+  </header>
+
+  <div class="body-layout">
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <div class="sidebar-head">
+        <div class="sh-label">You are viewing</div>
+        <div class="sh-title">Lower San Juan Watershed</div>
+      </div>
+
+      <a class="nav-item active" href="lsj_landing.html">
+        <div class="nav-icon" style="background:rgba(232,144,58,0.22);">
+          <i class="ti ti-home" style="color:#F4C080;"></i>
+        </div>
+        <div class="nav-text">
+          <div class="nt">Home</div>
+          <div class="ns">Overview &amp; about</div>
+        </div>
+      </a>
+
+      <a class="nav-item" href="lsj_goals.html">
+        <div class="nav-icon" style="background:rgba(232,144,58,0.14);">
+          <i class="ti ti-target" style="color:#E8A870;"></i>
+        </div>
+        <div class="nav-text">
+          <div class="nt">Plan goals</div>
+          <div class="ns">Targets &amp; outcomes</div>
+        </div>
+      </a>
+
+      <a class="nav-item" href="#">
+        <div class="nav-icon" style="background:rgba(60,130,95,0.2);">
+          <i class="ti ti-map-2" style="color:#70C4A0;"></i>
+        </div>
+        <div class="nav-text">
+          <div class="nt">Spatial explorer</div>
+          <div class="ns">Interactive maps</div>
+        </div>
+      </a>
+
+      <a class="nav-item" href="#">
+        <div class="nav-icon" style="background:rgba(60,100,160,0.18);">
+          <i class="ti ti-table" style="color:#80AADE;"></i>
+        </div>
+        <div class="nav-text">
+          <div class="nt">Data &amp; sources</div>
+          <div class="ns">Datasets &amp; reports</div>
+        </div>
+      </a>
+
+      <div class="nav-divider"></div>
+
+      <a class="nav-item-sm" href="#"><i class="ti ti-message-circle"></i><span>Share your input</span></a>
+      <a class="nav-item-sm" href="#"><i class="ti ti-file-description"></i><span>Read the full plan</span></a>
+      <a class="nav-item-sm" href="#"><i class="ti ti-download"></i><span>Download data</span></a>
+
+      <div class="sidebar-footer">
+        <p>Planning-level tool only. Not for regulatory determinations.</p>
+      </div>
+    </nav>
+
+    <!-- Main content -->
+    <main class="main">
+
+      <div class="hero-band">
+        <div class="hero-left">
+          <div class="eyebrow">Nine Key Element Watershed Plan</div>
+          <h1>Lower San Juan Watershed</h1>
+          <p>Protecting water quality across the Colorado Plateau — grounded in science, local knowledge, and community priorities.</p>
+        </div>
+        <div class="hero-right">
+          <a class="btn-primary" href="#"><i class="ti ti-file-description"></i> Read the full plan</a>
+          <a class="btn-outline" href="#"><i class="ti ti-message-circle"></i> Share your input</a>
+        </div>
+      </div>
+
+      <div class="breadcrumb">
+        <span class="bc-item current"><i class="ti ti-home" style="font-size:12px;"></i> Home</span>
+      </div>
+
+      <div class="content">
+
+        <div class="section-intro">
+          <div class="si-icon">
+            <i class="ti ti-ripple" style="color:#9A5820;"></i>
+          </div>
+          <div class="si-text">
+            <div class="sit">Welcome to the Lower San Juan Watershed Plan</div>
+            <div class="sis">This platform provides transparent access to the data, analyses, and stakeholder priorities guiding watershed protection and restoration. Use the navigation on the left to explore plan goals, interactive maps, and underlying data. This is a planning-level tool and should not be used for regulatory determinations.</div>
+          </div>
+        </div>
+
+        <div class="section-label">Where would you like to start?</div>
+        <div class="cards">
+
+          <a class="card" href="lsj_goals.html">
+            <div class="card-icon" style="background:#FAEADA;">
+              <i class="ti ti-target" style="color:#9A4820;"></i>
+            </div>
+            <div class="card-tag" style="color:#B06030;">Plan goals</div>
+            <h3>What we're working toward</h3>
+            <p>The water quality goals, restoration targets, and success measures guiding the plan.</p>
+            <div class="card-foot">
+              <div class="card-cta" style="color:#B06030;"><i class="ti ti-arrow-right"></i> Explore goals</div>
+              <div class="card-pill" style="background:#FAEADA;color:#9A4820;">Start here</div>
+            </div>
+          </a>
+
+          <a class="card" href="#">
+            <div class="card-icon" style="background:#E0F0E8;">
+              <i class="ti ti-map-2" style="color:#2C6B4A;"></i>
+            </div>
+            <div class="card-tag" style="color:#387A58;">Spatial explorer</div>
+            <h3>See it on a map</h3>
+            <p>Browse interactive maps of rivers, monitoring sites, land cover, and watershed boundaries.</p>
+            <div class="card-foot">
+              <div class="card-cta" style="color:#387A58;"><i class="ti ti-arrow-right"></i> Open map</div>
+              <div class="card-pill" style="background:#E0F0E8;color:#2C6B4A;">Interactive</div>
+            </div>
+          </a>
+
+          <a class="card" href="#">
+            <div class="card-icon" style="background:#E8F0FA;">
+              <i class="ti ti-table" style="color:#2A4F7A;"></i>
+            </div>
+            <div class="card-tag" style="color:#3A6090;">Data &amp; sources</div>
+            <h3>The numbers behind the plan</h3>
+            <p>Water quality monitoring data, lab results, and underlying datasets and reports.</p>
+            <div class="card-foot">
+              <div class="card-cta" style="color:#3A6090;"><i class="ti ti-arrow-right"></i> Browse data</div>
+              <div class="card-pill" style="background:#E8F0FA;color:#2A4F7A;">Download</div>
+            </div>
+          </a>
+
+        </div>
+
+        <div class="feedback-row">
+          <div class="fb-icon"><i class="ti ti-ear"></i></div>
+          <div class="fb-text">
+            <div class="ft">Your knowledge matters</div>
+            <div class="fs">Observed something on the ground? Share water quality concerns, local knowledge, or emerging issues to help keep this plan current.</div>
+          </div>
+          <a class="btn-sage" href="#"><i class="ti ti-send"></i> Share observations</a>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+</body>
+</html>
